@@ -1,0 +1,139 @@
+                Assignment #6. jQuery (Selectors, Effects, Animations)
+
+Objective:
+By the end of this assignment, students will be able to:
+  • find any element on a page with jQuery selectors and traversal methods;
+  • add, move and remove elements and show the changes with jQuery effects;
+  • make a page come alive with fades, flights and sliding cards.
+
+
+Rules for Submission:
+  1. This is an individual assignment. If the works of different students are the same, the grade is 0.
+  2. Submit before the deadline. Late works are not accepted! To get a grade you must submit
+     before the deadline AND defend your work at the practice lesson. Submission without a
+     defense will result in a grade of 0.
+  3. You must submit: your report in Assignment6_YourName.docx (or .pdf) format. If you
+     submit in other formats, your grade will be 0. All source code must be uploaded to the GitHub
+     repository.
+  4. If you cannot explain your own code, the whole assignment is graded 0.
+  5. Use jQuery for all the behavior: no other libraries, no onclick attributes, no CSS transitions or
+     CSS animations.
+  6. IN THE REPORT MUST BE:
+   • Your name and group
+   • Every task with screenshots, tables and a short explanation in your own words.
+   • A short conclusion about what you learned
+   • The GitHub repository URL with the source code. Submissions without the link will receive
+       a grade of 0.
+Task 1. Selector Detective (selectors and traversal)
+AITU students met at a birthday party in a house. The guests were in 4 rooms from 19:30 to 22:30.
+At 21:30 the birthday cake disappeared from the kitchen. The picture shows everyone who was there:
+where they stood, what they wore, when they came and what they had with them. Rebuild the party
+on a web page and find the thief with jQuery.
+  1. Write the party from the picture as an array: rooms with their name and floor, and guests from
+      left to right with the name, clothing color, arrival time, AITU student or not, and things.
+  2. Build the page from the array with jQuery: 2 floors with rooms, and a card for every guest with
+      the avatar, a ring in the clothing color, name, time, icons of the things and an AITU badge.
+      Store the guest data on the card as classes and data-* attributes. The design is yours.
+  3. Add a button for every case. A click highlights what the case finds, makes the found guests
+      jump once with animate() and shows their number and names.
+  4. Solve every case with one jQuery chain that searches the page, not the array. Before every case,
+      build the page again; cases 18 and 19 change the party with fadeIn() and fadeOut().
+  5. In your report, show every case: its jQuery chain and a screenshot of the result on the page.
+
+
+
+
+Avatars: use any free avatars, for example Open Peeps (free, CC0).
+An avatar for a name is one link: https://api.dicebear.com/9.x/open-peeps/svg?seed=Nurlan
+Cases
+  Case     Find or do
+   1       Who is in the hall?
+   2       Who is dressed in yellow or purple?
+   3       Which AITU students are upstairs?
+   4       Who has glasses or a bag?
+   5       Who came with nothing at all?
+   6       Who has a phone but no bag?
+   7       Who arrived between 20:30 and 21:00, both times included?
+   8       Who arrived after 21:00 and is not an AITU student?
+   9       Who stands right next to Askar?
+   10      Who stands last in each room?
+   11      Who stands third in each room?
+   12      Who stands after Timur in his room?
+   13      Who stands right before someone in black?
+   14      In which room is Aruzhan?
+   15      Which rooms have fewer than 6 guests?
+   16      In which rooms does somebody have a cup, but nobody wears glasses?
+   17      Who came first to each room?
+   18      Miras, an AITU student in blue, comes at 21:20 with his phone and joins Askar and
+           Inkar, standing between them. Let him appear smoothly.
+   19      Natasha says goodbye and goes home. Her card fades away and disappears from the
+           page.
+   20      Who took the cake? The thief was downstairs, came after 21:00 but before the cake
+           disappeared, has crumbs but no cup, and stood right next to an AITU student.
+
+
+Tools: id, class and attribute selectors, :has(), :not(), :last-child, :nth-child(), filter(), next(), prev(),
+nextAll(), siblings(), closest(), add(), insertAfter(), fadeIn(), fadeOut(), remove().
+Task 2. The party in motion (effects and animations)
+Create a copy of your Task 1 files and continue in the copy. Make the page come alive with effects.
+   1. Spotlight. Click a case. The guests that the case finds stay bright. All other guests become
+       pale: they fade to 20% in 0.3 seconds. Some cases find rooms, not guests. For these cases,
+       the guests in all the other rooms become pale. The Clear button makes all guests bright
+       again.
+   2. Guest card. Click a guest. A card with all the information about this guest opens. The card
+       shows the information in words, for example “Came at 20:30”, “AITU student”, “Has a
+       phone and a bag”. The card does not just appear: it starts small on the guest’s photo and
+       grows to its full size. The card closes when the user presses Esc or clicks outside the card.
+       Then it gets small again and goes back into the photo. Only one card can be open. When the
+       user clicks another guest, the first card closes and the new one opens.
+   3. Move. The guest card has a button for each other room, for example “Move to the hall”.
+       Click a button to send the guest to the end of that room. The guest’s card flies across the
+       house to the new room; it does not jump. In the old room, the empty place closes slowly. In
+       the new room, a place opens slowly. After the move, change your array too, so that the cases
+       from Task 1 find the guest in the new room.
+   4. Sort by time. Each room has a button “Sort by time”. Click it, and the guests of this room
+       stand in order of their arrival time, from the earliest to the latest. Click it again, and the
+       guests go back to the order in the picture. The cards move slowly to their new places; they
+       do not jump.
+   5. Fast clicks. Click the buttons and guests very fast, many times. Every effect must still end
+       in the right state. No animation repeats again and again after the user stops clicking.
+
+ Check                        Expected result
+ Case 3, then Clear           Only the AITU students on the 2nd floor stay bright; Clear brings
+                              everybody back.
+ Click a guest, then Esc      The card grows out of the avatar with all the data; Esc shrinks it back.
+ Move Arman to the            Arman flies to the end of the balcony; the hall closes the gap; case 1
+ balcony                      no longer finds him.
+ Sort the living room         The cards slide to 19:55, 20:20, 20:30, 21:00, 21:10, then back to the
+ twice                        picture order.
+ Sort 5 times fast            The cards end in the sorted order without jumping or shaking.
+
+
+Tools: fadeTo(), animate() with callbacks, stop(), offset(), position(), clone(), css(), append(), on()
+with click and keydown.
+                                      Assessment criteria
+ Criterion What is checked                                                                Points
+ Task 1    - the array matches the picture; the page is built from it                      22
+           - every case gives the right result with one jQuery chain
+ Task 2    - every check in the table gives the shown result                               22
+           - the four effects are animated with jQuery; fast clicks leave no queues
+ Report    - contains everything listed in the rules; explanations in the student’s own     6
+           words
+ Defense   - explains the work and demonstrates it live without errors (10)                50
+           - answers the instructor’s questions about their own code and the topic (15)
+           - completes the live coding task independently, without assistance or hints
+           (25)
+ Total                                                                                     100
+
+
+Learn more:
+https://www.w3schools.com/jquery/jquery_ref_selectors.asp
+https://www.w3schools.com/jquery/jquery_traversing.asp
+https://www.dicebear.com/styles/open-peeps/
+https://www.w3schools.com/jquery/jquery_animate.asp
+https://www.w3schools.com/jquery/jquery_fade.asp
+https://www.w3schools.com/jquery/jquery_dimensions.asp
+
+
+Good luck!
+
